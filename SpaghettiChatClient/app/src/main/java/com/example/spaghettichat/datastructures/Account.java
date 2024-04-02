@@ -1,4 +1,4 @@
-package com.example.spaghettichat.accountmanager;
+package com.example.spaghettichat.datastructures;
 
 public class Account {
 
@@ -10,6 +10,14 @@ public class Account {
         this.firstName = firstName;
         this.lastName = lastName;
         this.isAdmin = isAdmin;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public String getFullName() { return firstName + " " + lastName; }

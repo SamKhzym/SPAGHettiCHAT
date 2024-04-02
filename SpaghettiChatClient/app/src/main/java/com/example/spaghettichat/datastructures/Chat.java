@@ -1,7 +1,4 @@
-package com.example.spaghettichat.chatmanager;
-
-import com.example.spaghettichat.accountmanager.Account;
-import com.example.spaghettichat.messagemanager.Message;
+package com.example.spaghettichat.datastructures;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
