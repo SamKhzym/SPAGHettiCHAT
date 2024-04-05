@@ -6,27 +6,28 @@
     android:layout_height="wrap_content"
     android:padding="8dp">
 
+
+    <!-- Profile Picture for Sent Messages -->
     <ImageView
-        android:id="@+id/profile_picture"
+        android:id="@+id/profile_picture_sent"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:src="@tools:sample/avatars" />
 
+    <!-- Message Text for Sent Messages -->
     <TextView
-        android:id="@+id/message_text"
+        android:id="@+id/message_text_sent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/profile_picture"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/profile_picture"
-        app:layout_constraintBottom_toBottomOf="@+id/profile_picture"
-        tools:text="Here is the sample message text that will be displayed." />
+        app:layout_constraintEnd_toStartOf="@+id/profile_picture_sent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="Sent message text will be displayed here." />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
