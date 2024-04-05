@@ -26,6 +26,7 @@
             app:title="@string/app_name"
             app:titleCentered="true" />
 
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
