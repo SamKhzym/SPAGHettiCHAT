@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_view"
         android:layout_width="0dp"
@@ -13,7 +14,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:queryHint="Search contacts" />
+        android:queryHint="Search contacts" >
+    </androidx.appcompat.widget.SearchView>
+
+
+
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -29,8 +34,23 @@
             android:layout_height="wrap_content"
             android:listSelector="#0f0" />
 
-
+        <ImageView
+            android:id="@+id/chat_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/cd_back"
+            android:onClick="onBackPressed"
+            android:padding="8dp"
+            android:layout_gravity="end"
+            android:src="@android:drawable/ic_media_previous"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </com.google.android.material.appbar.AppBarLayout>
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

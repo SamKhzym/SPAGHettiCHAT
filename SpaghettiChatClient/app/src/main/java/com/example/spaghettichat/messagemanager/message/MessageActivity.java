@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,6 +30,10 @@ public class MessageActivity extends AppCompatActivity {
         messageInput = findViewById(R.id.message_input);
         sendButton = findViewById(R.id.send_button);
         vanishModeSwitch = findViewById(R.id.switch_vanish_mode);
+
+        String savedExtra = getIntent().getStringExtra("userID");
+        TextView myText = (TextView) findViewById(R.id.chat_with_username);
+        myText.setText(savedExtra);
 
 //}
     }}

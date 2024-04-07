@@ -25,6 +25,8 @@ import android.widget.Toast;
 
 import com.example.spaghettichat.R;
 import com.example.spaghettichat.chatmanager.ChatManagerActivity;
+import com.example.spaghettichat.chatmanager.ChatSearchActivity;
+import com.example.spaghettichat.chatmanager.chatlist.MainActivity;
 import com.example.spaghettichat.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
@@ -124,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 // if login successful, navigate to chat manager activity
                 if (loginStat) {
-                    startActivity(new Intent(LoginActivity.this, ChatManagerActivity.class));
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                 }
 

@@ -1,24 +1,16 @@
 package com.example.spaghettichat.chatmanager;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.spaghettichat.R;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.navigation.ui.AppBarConfiguration;
 
 import com.example.spaghettichat.databinding.ActivityChatManagerBinding;
-import com.example.spaghettichat.messagemanager.message.MessageActivity;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.spaghettichat.chatmanager.chatlist.MainActivity;
 
 public class ChatManagerActivity extends AppCompatActivity {
 
@@ -30,14 +22,13 @@ public class ChatManagerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityChatManagerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         setSupportActionBar(binding.toolbar);
 
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ChatManagerActivity.this, ChatSearchActivity.class));
+                startActivity(new Intent(ChatManagerActivity.this, MainActivity.class));
             }
         });
 
