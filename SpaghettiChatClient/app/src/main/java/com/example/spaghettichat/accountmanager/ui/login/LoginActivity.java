@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.spaghettichat.R;
+import com.example.spaghettichat.chatmanager.ChatManagerModel;
 import com.example.spaghettichat.chatmanager.ChatManagerActivity;
 import com.example.spaghettichat.databinding.ActivityLoginBinding;
 
