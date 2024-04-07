@@ -25,7 +25,7 @@
             android:exported="true">
         </activity>
         <activity
-            android:name="com.example.spaghettichat.chatmanager.ChatSearchActivity"
+            android:name="com.example.spaghettichat.chatmanager.chatsearch.ChatSearchActivity"
             android:exported="true">
         </activity>
         <activity
@@ -33,11 +33,7 @@
             android:exported="true">
         </activity>
         <activity
-            android:name="com.example.spaghettichat.chatmanager.chatlist.MainActivity"
-            android:exported="true">
-        </activity>
-        <activity
-            android:name="com.example.spaghettichat.chatmanager.chatlist.MainActivity"
+            android:name="com.example.spaghettichat.chatmanager.chatlist.ChatListActivity"
             android:exported="true">
         </activity>
     </application>
