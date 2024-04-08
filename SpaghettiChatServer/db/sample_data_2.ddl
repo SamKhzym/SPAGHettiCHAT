@@ -1,11 +1,22 @@
 USE spaghettichat;
 
-INSERT INTO message (msgId, msgString, sender, lastMsgId, ts, isVanish)
+INSERT INTO Message (msgId, msgString, sender, ts, isVanish)
 VALUES
-    (5, 'what do you think about 3a04?', 'athukorg', NULL, CURRENT_TIMESTAMP, FALSE),
-    (6, 'kinda wack ngl', 'grewap17', 5, CURRENT_TIMESTAMP, FALSE),
-    (7, 'frfr', 'athukorg', 6, CURRENT_TIMESTAMP, FALSE);
+    (5, 'what do you think about 3a04?', 'athukorg', CURRENT_TIMESTAMP, FALSE),
+    (6, 'kinda wack ngl', 'grewap17', CURRENT_TIMESTAMP, FALSE),
+    (7, 'frfr', 'athukorg', CURRENT_TIMESTAMP, FALSE);
 
-INSERT INTO chat(chatId, creator, receiver, lastMsg, creationTs)
+INSERT INTO Chat(chatId, creatorId, creationTs)
 VALUES
-    (2, 'athukorg', 'grewap17', 4, CURRENT_TIMESTAMP);
+    (2, 'athukorg', CURRENT_TIMESTAMP);
+
+INSERT INTO AccountInChat(chatId, employeeId)
+VALUES
+    (2, 'athukorg'),
+    (2, 'grewap17');
+
+INSERT INTO MessageInChat(chatId, msgId)
+VALUES
+    (2, 5),
+    (2, 6),
+    (2, 7);
