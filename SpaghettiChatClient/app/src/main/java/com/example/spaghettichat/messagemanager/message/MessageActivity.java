@@ -29,8 +29,8 @@ public class MessageActivity extends AppCompatActivity {
     private Button sendButton;
     private Switch vanishModeSwitch;
     private List<Message> messageList;
-//    private MessageAdapter adapter;
     private MessageAdapter adapter;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,7 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
 
-        RecyclerView recyclerView = findViewById(R.id.messages_recyclerview);
+         recyclerView= findViewById(R.id.messages_recyclerview);
         messageList = new ArrayList<>();
         adapter = new MessageAdapter(messageList);
         recyclerView.setAdapter(adapter);
@@ -65,35 +65,29 @@ public class MessageActivity extends AppCompatActivity {
         String messageContent = messageInput.getText().toString().trim();
         if (!messageContent.isEmpty()) {
             // Assuming "Me" is the sender's name
-            Message message = null;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                message = new Message(1, new Account("Me","p","g",true), messageContent,
-                        LocalTime.now(), null, false);
-            }
+
+            Message message = new Message(1, new Account("Me","p","g",true), messageContent, LocalTime.now(), null, false);
+
             messageList.add(message);
             adapter.notifyItemInserted(messageList.size() - 1);
             // Scroll RecyclerView to the bottom
+            recyclerView.scrollToPosition(messageList.size() - 1);
             // Clear message input
             messageInput.getText().clear();
-            // Simulate receiving a message after sending (for testing)
             simulateReceivedMessage();
         }
     }
 
     private void simulateReceivedMessage() {
-        // Simulate receiving a message from another user after a delay (for testing)
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
-                Message receivedMessage = null;
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                    receivedMessage = new Message(2, new Account("Other User","gg","wer",true), "Hello!",
+                Message receivedMessage = new Message(2, new Account("Other User","gg","wer",true), "Hello!",
                             LocalTime.now(), null, false);
-                }
+
                 messageList.add(receivedMessage);
                 adapter.notifyItemInserted(messageList.size() - 1);
-                // Scroll RecyclerView to the bottom
+                recyclerView.scrollToPosition(messageList.size() - 1);
             }
         }, 2000); // Simulate after 2 seconds
     }
