@@ -24,6 +24,17 @@
             android:name="com.example.spaghettichat.chatmanager.ChatManagerActivity"
             android:exported="true">
         </activity>
+        <activity
+            android:name="com.example.spaghettichat.chatmanager.chatsearch.ChatSearchActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name="com.example.spaghettichat.messagemanager.message.MessageActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name="com.example.spaghettichat.chatmanager.chatlist.ChatListActivity"
+            android:exported="true">
+        </activity>
     </application>
-
 </manifest>
