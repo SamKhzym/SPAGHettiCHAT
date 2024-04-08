@@ -1,6 +1,8 @@
 package com.example.spaghettichat.accountmanager.data;
 
+
 import com.example.spaghettichat.accountmanager.data.model.LoggedInUser;
+import com.example.spaghettichat.accountmanager.data.Result;
 
 import java.io.IOException;
 

@@ -25,6 +25,8 @@ import android.widget.Toast;
 
 import com.example.spaghettichat.R;
 import com.example.spaghettichat.chatmanager.chatlist.ChatListActivity;
+import com.example.spaghettichat.chatmanager.ChatManagerModel;
+import com.example.spaghettichat.chatmanager.ChatManagerActivity;
 import com.example.spaghettichat.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
