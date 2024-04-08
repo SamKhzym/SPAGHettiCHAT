@@ -16,6 +16,10 @@ public class Account {
         return firstName;
     }
 
+    public String getEmployeeId() {
+        return employeeId;
+    }
+
     public String getLastName() {
         return lastName;
     }

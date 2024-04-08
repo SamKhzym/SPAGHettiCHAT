@@ -23,4 +23,11 @@ public class Message {
 
     }
 
+    public String getSender() {
+        return sender.getEmployeeId();
+    }
+    public String getMessage() {
+        return message;
+    }
+
 }
