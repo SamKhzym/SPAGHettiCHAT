@@ -1,8 +1,9 @@
 package com.example.spaghettichat.datastructures;
 
+
 import java.time.LocalTime;
 
-public class Message {
+public class Message implements Serializable {
 
     private int messageId;
     private Account sender;
@@ -23,4 +24,27 @@ public class Message {
 
     }
 
+    public int getMessageId() {
+        return messageId;
+    }
+
+    public Account getSender() {
+        return sender;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public LocalTime getTimestamp() {
+        return timestamp;
+    }
+
+    public Message getLastMessage() {
+        return lastMessage;
+    }
+
+    public boolean isVanished() {
+        return isVanished;
+    }
 }

@@ -1,13 +1,12 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class Server implements Runnable {
 
@@ -67,8 +66,8 @@ public class Server implements Runnable {
     class ConnectionHandler implements Runnable {
 
         private Socket client;
-        private BufferedReader in;
-        private PrintWriter out;
+        private ObjectInputStream in;
+        private ObjectOutputStream out;
         private String nickname;
 
         public ConnectionHandler(Socket client){
@@ -77,39 +76,55 @@ public class Server implements Runnable {
         @Override
         public void run(){
             try {
-                out = new PrintWriter(client.getOutputStream(), true);
-                in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-                out.println("Please enter a nickname: ");
-                nickname = in.readLine();
-                System.out.println(nickname + " connected!");
-                broadcast(nickname + " joined the chat server");
-                String message;
-                while((message = in.readLine()) != null){
-                    if(message.startsWith("/nick")){
-                        // TODO: handle nickname
-                        String[] messageSplit = message.split(" ", 2);
-                        if(messageSplit.length == 2){
-                            broadcast(nickname + " renamed themselves to " + messageSplit[1]);
-                            System.out.println(nickname + " renamed themselves to " + messageSplit[1]);
-                            nickname = messageSplit[1];
-                            out.println("Successfully changed nickname to " + nickname);
+                out = new ObjectOutputStream(client.getOutputStream());
+                in = new ObjectInputStream(client.getInputStream());
+//                out.println("Please enter a nickname: ");
+                System.out.println("New user connected!");
+                broadcast("New user joined the chat server");
+
+
+                Object objMessage;
+                while ((objMessage = in.readObject()) != null) {
+                    if (objMessage instanceof Message) {
+                        Message message = (Message) objMessage;
+                        String text = message.getMessage(); // Reminder add .getMessage method to the Message object
+                        nickname = message.getSender().getFirstName();
+
+                        if (text.startsWith("/nick")) {
+                            // Handle nickname change
+                            String[] parts = text.split(" ", 2);
+                            if (parts.length == 2) {
+                                broadcast(nickname + " renamed themselves to " + parts[1]);
+                                nickname = parts[1];
+                                sendMessage("Successfully changed nickname to " + nickname);
+                            } else {
+                                sendMessage("No nickname provided!");
+                            }
+                        } else if (text.startsWith("/quit")) {
+                            // Handle quit
+                            broadcast(nickname + " left the chat");
+                            shutdown();
+                            break; // Exit loop to end thread
                         } else {
-                            out.println("No nickname provided!");
+                            // Broadcast normal message
+                            broadcast(nickname + ": " + text);
                         }
-                    } else if (message.startsWith("/quit")) {
-                        broadcast(nickname + " left the chat");
-                        shutdown();
-                    } else {
-                        broadcast(nickname + ": " + message);
                     }
                 }
-            } catch (IOException e){
+            } catch (Exception e) {
+                e.printStackTrace();
                 shutdown();
             }
         }
 
-        public void sendMessage(String message){
-            out.println(message);
+        public void sendMessage(String text) {
+
+            try {
+                out.writeUTF(text); 
+                out.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         public void shutdown(){
