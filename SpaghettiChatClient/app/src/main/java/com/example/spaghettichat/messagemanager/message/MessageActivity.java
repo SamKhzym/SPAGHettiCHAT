@@ -37,7 +37,6 @@ public class MessageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_ui);
 
-        // Initialize views
         messageInput = findViewById(R.id.message_input);
         sendButton = findViewById(R.id.send_button);
         vanishModeSwitch = findViewById(R.id.switch_vanish_mode);
@@ -47,6 +46,7 @@ public class MessageActivity extends AppCompatActivity {
         myText.setText(savedExtra);
         messageInput = findViewById(R.id.message_input);
         Button sendButton = findViewById(R.id.send_button);
+
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,7 +54,7 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
 
-         recyclerView= findViewById(R.id.messages_recyclerview);
+        recyclerView= findViewById(R.id.messages_recyclerview);
         messageList = new ArrayList<>();
         adapter = new MessageAdapter(messageList);
         recyclerView.setAdapter(adapter);

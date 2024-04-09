@@ -13,27 +13,25 @@ import com.example.spaghettichat.datastructures.Message;
 import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private static final int VIEW_TYPE_MESSAGE_SENT = 1;
-    private static final int VIEW_TYPE_MESSAGE_RECEIVED = 2;
 
-    private List<Message> mMessageList;
+    private List<Message> MessageList;
 
     public MessageAdapter(List<Message> messageList) {
-        mMessageList = messageList;
+        MessageList = messageList;
     }
 
     @Override
     public int getItemCount() {
-        return mMessageList.size();
+        return MessageList.size();
     }
 
     @Override
-    public int getItemViewType(int position) {
-        Message message = (Message)mMessageList.get(position);
+    public final int getItemViewType(int position) {
+        Message message = (Message)MessageList.get(position);
         if (message.getSender().equals("Me")) {
-            return VIEW_TYPE_MESSAGE_SENT;
+            return 1;
         } else {
-            return VIEW_TYPE_MESSAGE_RECEIVED;
+            return 2;
         }
     }
 
@@ -42,11 +40,11 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
-        if (viewType == VIEW_TYPE_MESSAGE_SENT) {
-            view = LayoutInflater.from(parent.getContext())
+        if (viewType == 1) {
+             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.sample_message_sent, parent, false);
             return new SentMessageHolder(view);
-        } else if (viewType == VIEW_TYPE_MESSAGE_RECEIVED) {
+        } else if (viewType == 2) {
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.sample_message_received, parent, false);
             return new ReceivedMessageHolder(view);
@@ -56,16 +54,16 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        Message message = mMessageList.get(position);
+        Message message = MessageList.get(position);
+        if(holder.getItemViewType()==1){
+            ((SentMessageHolder) holder).messageText.setText(message.getMessage());
 
-        switch (holder.getItemViewType()) {
-            case VIEW_TYPE_MESSAGE_SENT:
-                ((SentMessageHolder) holder).bind(message);
-                break;
-            case VIEW_TYPE_MESSAGE_RECEIVED:
-                ((ReceivedMessageHolder) holder).bind(message);
-                break;
         }
+        if(holder.getItemViewType()==2){
+            ((ReceivedMessageHolder) holder).messageText.setText(message.getMessage());
+
+        }
+
     }
 
     private class SentMessageHolder extends RecyclerView.ViewHolder {
@@ -74,9 +72,6 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         SentMessageHolder(View itemView) {
             super(itemView);
             messageText = itemView.findViewById(R.id.message_text_sent);
-        }
-        void bind(Message message) {
-            messageText.setText(message.getMessage());
         }
     }
 
@@ -88,7 +83,4 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             messageText = itemView.findViewById(R.id.message_text_received);
         }
 
-        void bind(Message message) {
-            messageText.setText(message.getMessage());
-        }}}
-
+                   }}

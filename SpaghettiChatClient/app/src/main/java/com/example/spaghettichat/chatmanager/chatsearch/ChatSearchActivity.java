@@ -33,7 +33,7 @@ public class ChatSearchActivity extends  AppCompatActivity{
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, name);
         list.setAdapter(adapter);
-        setupSearchView();
+        SearchView();
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -47,21 +47,21 @@ public class ChatSearchActivity extends  AppCompatActivity{
         });
 
     }
-        private void filter(String query) {
+        private void search(String query) {
             ArrayAdapter<String> adapter = (ArrayAdapter<String>) list.getAdapter();
             adapter.getFilter().filter(query);
         }
 
-        private void setupSearchView() {
+        private void SearchView() {
             search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
-                    filter(query);
+                    search(query);
                     return false;
                 }
                 @Override
                 public boolean onQueryTextChange(String newText) {
-                    filter(newText);
+                    search(newText);
                     return false;
                 }
             });
