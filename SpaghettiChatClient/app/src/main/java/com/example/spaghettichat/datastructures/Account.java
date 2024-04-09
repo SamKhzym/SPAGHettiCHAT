@@ -12,6 +12,8 @@ public class Account {
         this.isAdmin = isAdmin;
     }
 
+    public String getEmployeeId() { return employeeId; }
+
     public String getFirstName() {
         return firstName;
     }
@@ -19,6 +21,8 @@ public class Account {
     public String getLastName() {
         return lastName;
     }
+
+    public boolean getIsAdmin() { return isAdmin; }
 
     public String getFullName() { return firstName + " " + lastName; }
 
