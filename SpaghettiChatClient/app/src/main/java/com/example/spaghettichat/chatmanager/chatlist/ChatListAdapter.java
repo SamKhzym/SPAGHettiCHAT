@@ -12,29 +12,24 @@ import com.example.spaghettichat.R;
 public class ChatListAdapter extends ArrayAdapter {
 
     private final Activity context;
-    private final String[] nameArray;
-    private final String[] infoArray;
+    private final String[] name;
+    private final String[] message;
 
-    public ChatListAdapter(Activity context, String[] nameArrayParam, String[] infoArrayParam){
+    public ChatListAdapter(Activity context, String[] nameList, String[] messageList){
 
-        super(context,R.layout.adapter_chatlist, nameArrayParam);
-
+        super(context,R.layout.adapter_chatlist, nameList);
         this.context=context;
-        this.nameArray = nameArrayParam;
-        this.infoArray = infoArrayParam;
+        this.name = nameList;
+        this.message = messageList;
 
     }
     public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater=context.getLayoutInflater();
-
         View rowView=inflater.inflate(R.layout.adapter_chatlist, null,true);
-
-        TextView nameTextField = (TextView) rowView.findViewById(R.id.nameTextViewID);
-        TextView infoTextField = (TextView) rowView.findViewById(R.id.infoTextViewID);
-
-        nameTextField.setText(nameArray[position]);
-        infoTextField.setText(infoArray[position]);
-
+        TextView messageinput = (TextView) rowView.findViewById(R.id.infoTextViewID);
+        TextView nameinput = (TextView) rowView.findViewById(R.id.nameTextViewID);
+        nameinput.setText(name[position]);
+        messageinput.setText(message[position]);
         return rowView;
 
     };}

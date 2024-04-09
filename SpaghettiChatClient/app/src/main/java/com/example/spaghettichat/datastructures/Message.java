@@ -1,6 +1,7 @@
 package com.example.spaghettichat.datastructures;
 
 
+import java.io.Serializable;
 import java.time.LocalTime;
 
 public class Message implements Serializable {
@@ -28,10 +29,13 @@ public class Message implements Serializable {
         return messageId;
     }
 
-    public Account getSender() {
+    public Account getSender2() {
         return sender;
     }
 
+    public String getSender() {
+        return sender.getEmployeeId();
+    }
     public String getMessage() {
         return message;
     }

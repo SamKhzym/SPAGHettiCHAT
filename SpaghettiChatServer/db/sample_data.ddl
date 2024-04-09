@@ -1,6 +1,6 @@
 USE spaghettichat;
 
-INSERT INTO account (employeeId, firstName, lastName, isAdmin)
+INSERT INTO Account (employeeId, firstName, lastName, isAdmin)
 VALUES 
     ('khzyms', 'Sam', 'Khzym', TRUE),
     ('khakiana', 'Amaan', 'Khakiani', TRUE),
@@ -9,13 +9,25 @@ VALUES
     ('athukorg', 'Gayan', 'Athukorala', TRUE),
     ('shmoej69', 'Joe', 'Shmoe', FALSE);
 
-INSERT INTO message (msgId, msgString, sender, lastMsgId, ts, isVanish)
+INSERT INTO Message (msgId, msgString, sender, ts, isVanish)
 VALUES
-    (1, 'yoooo dude have you heard of this new secure messaging app?', 'khzyms', NULL, CURRENT_TIMESTAMP, FALSE),
-    (2, 'nah what\'s it called?', 'khakiana', 1, CURRENT_TIMESTAMP, FALSE),
-    (3, 'spaghettichat', 'khzyms', 2, CURRENT_TIMESTAMP, FALSE),
-    (4, 'will have to check it out', 'khakiana', 3, CURRENT_TIMESTAMP, FALSE);
+    (1, 'yoooo dude have you heard of this new secure messaging app?', 'khzyms', CURRENT_TIMESTAMP, FALSE),
+    (2, 'nah what\'s it called?', 'khakiana', CURRENT_TIMESTAMP, FALSE),
+    (3, 'spaghettichat', 'khzyms', CURRENT_TIMESTAMP, FALSE),
+    (4, 'will have to check it out', 'khakiana', CURRENT_TIMESTAMP, FALSE);
 
-INSERT INTO chat(chatId, creator, receiver, lastMsg, creationTs)
+INSERT INTO Chat(chatId, creatorId, creationTs)
 VALUES
-    (1, 'khzyms', 'khakiana', 4, CURRENT_TIMESTAMP);
+    (1, 'khzyms', CURRENT_TIMESTAMP);
+
+INSERT INTO AccountInChat(chatId, employeeId)
+VALUES
+    (1, 'khzyms'),
+    (1, 'khakiana');
+
+INSERT INTO MessageInChat(chatId, msgId)
+VALUES
+    (1, 1),
+    (1, 2),
+    (1, 3),
+    (1, 4);

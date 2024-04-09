@@ -1,4 +1,4 @@
-package com.example.spaghettichat.datastructures;
+package datastructures;
 
 public class Account {
 
@@ -12,17 +12,17 @@ public class Account {
         this.isAdmin = isAdmin;
     }
 
+    public String getEmployeeId() { return employeeId; }
+
     public String getFirstName() {
         return firstName;
-    }
-
-    public String getEmployeeId() {
-        return employeeId;
     }
 
     public String getLastName() {
         return lastName;
     }
+
+    public boolean getIsAdmin() { return isAdmin; }
 
     public String getFullName() { return firstName + " " + lastName; }
 

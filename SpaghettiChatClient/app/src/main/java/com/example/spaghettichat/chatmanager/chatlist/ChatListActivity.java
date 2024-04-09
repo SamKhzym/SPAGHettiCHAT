@@ -24,9 +24,9 @@ public class ChatListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatlist_manager);
-        ChatListAdapter ad = new ChatListAdapter(this, name, message);
+        ChatListAdapter adapter = new ChatListAdapter(this, name, message);
         listView = (ListView) findViewById(R.id.listViewX);
-        listView.setAdapter(ad);
+        listView.setAdapter(adapter);
 
         FloatingActionButton myFab = findViewById(R.id.fab);
         myFab.setOnClickListener(new View.OnClickListener() {
@@ -41,7 +41,6 @@ public class ChatListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 Intent intent = new Intent(ChatListActivity.this, MessageActivity.class);
-
                 String User = name[position];
                 intent.putExtra("userID", User);
                 startActivity(intent);
