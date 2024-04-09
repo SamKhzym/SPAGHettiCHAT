@@ -9,8 +9,10 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.spaghettichat.R;
+import com.example.spaghettichat.chatmanager.ChatManagerModel;
 import com.example.spaghettichat.chatmanager.chatsearch.ChatSearchActivity;
 import com.example.spaghettichat.databinding.ActivityChatManagerBinding;
+import com.example.spaghettichat.messagemanager.MessageManagerModel;
 import com.example.spaghettichat.messagemanager.message.MessageActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -21,9 +23,14 @@ public class ChatListActivity extends AppCompatActivity {
     ListView listView;
     private ActivityChatManagerBinding binding;
 
+    private ChatManagerModel chatManager = new ChatManagerModel();
+
+    private MessageManagerModel messageManager = new MessageManagerModel();
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatlist_manager);
+
         ChatListAdapter ad = new ChatListAdapter(this, name, message);
         listView = (ListView) findViewById(R.id.listViewX);
         listView.setAdapter(ad);
@@ -35,16 +42,10 @@ public class ChatListActivity extends AppCompatActivity {
             }
         });
 
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,
-                                    long id) {
-                Intent intent = new Intent(ChatListActivity.this, MessageActivity.class);
-
-                String User = name[position];
-                intent.putExtra("userID", User);
-                startActivity(intent);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //messageManager.startMessageSession();
             }
         });
 

@@ -8,6 +8,10 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.spaghettichat.R;
+import com.example.spaghettichat.accountmanager.AccountManagerModel;
+import com.example.spaghettichat.datastructures.Chat;
+
+import java.util.ArrayList;
 
 public class ChatListAdapter extends ArrayAdapter {
 
@@ -15,13 +19,22 @@ public class ChatListAdapter extends ArrayAdapter {
     private final String[] nameArray;
     private final String[] infoArray;
 
-    public ChatListAdapter(Activity context, String[] nameArrayParam, String[] infoArrayParam){
+    public ChatListAdapter(Activity context, String[] name, String[] message){
 
-        super(context,R.layout.adapter_chatlist, nameArrayParam);
+        super(context,R.layout.adapter_chatlist, name);
+
+        //String[] chatNames = new String[userChats.size()];
+        //String[] previews = new String[userChats.size()];
+
+        // iterate through all chats to get chat name array
+        //for (int i = 0; i < userChats.size(); i++) {
+        //    chatNames[i] = userChats.get(i).getRecipientString(AccountManagerModel.getCurrentUser());
+        //    previews[i] = "Sample Chat";
+        //}
 
         this.context=context;
-        this.nameArray = nameArrayParam;
-        this.infoArray = infoArrayParam;
+        this.nameArray = name;
+        this.infoArray = message;
 
     }
     public View getView(int position, View view, ViewGroup parent) {

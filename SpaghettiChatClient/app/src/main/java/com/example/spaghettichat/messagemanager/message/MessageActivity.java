@@ -10,16 +10,19 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.spaghettichat.R;
+import com.example.spaghettichat.datastructures.Chat;
 
-public class MessageActivity extends AppCompatActivity {
+public class MessageActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText messageInput;
     private Button sendButton;
     private Switch vanishModeSwitch;
+    private Chat chat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,5 +38,15 @@ public class MessageActivity extends AppCompatActivity {
         TextView myText = (TextView) findViewById(R.id.chat_with_username);
         myText.setText(savedExtra);
 
+        sendButton.setOnClickListener(this);
+
 //}
-    }}
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        Toast.makeText(this, "This is my Toast message!", Toast.LENGTH_LONG).show();
+
+    }
+}

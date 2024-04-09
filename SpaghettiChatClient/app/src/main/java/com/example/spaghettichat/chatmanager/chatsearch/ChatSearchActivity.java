@@ -9,15 +9,23 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.example.spaghettichat.R;
+import com.example.spaghettichat.accountmanager.AccountManagerModel;
+import com.example.spaghettichat.chatmanager.ChatManagerModel;
+import com.example.spaghettichat.datastructures.Account;
 import com.example.spaghettichat.messagemanager.message.MessageActivity;
 
 import androidx.appcompat.widget.SearchView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class ChatSearchActivity extends  AppCompatActivity{
     private SearchView search;
     private ListView list;
+
+    private AccountManagerModel accountManager = new AccountManagerModel();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,19 +34,26 @@ public class ChatSearchActivity extends  AppCompatActivity{
         search = findViewById(R.id.search_view);
         list = findViewById(R.id.list_view);
 
-        String[] name = {
-                "khzyms", "khakiana", "issah3", "grewap17", "athukorg", "shmoej69"
-        };
+        // construct account list that user can select from
+        ArrayList<Account> accounts = accountManager.getAllAccounts();
+        ArrayList<String> names = new ArrayList<String>();
 
+        // iterate through all accounts and populate arraylist of names
+        for (Account a : accounts) {
+            String nameString = a.getFullName() + " (" + a.getEmployeeId() + ")";
+            names.add(nameString);
+        }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, name);
+        // change to datatype search bar needs
+        String[] namesArray = new String[names.size()];
+        namesArray = names.toArray(namesArray);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, namesArray);
         list.setAdapter(adapter);
         setupSearchView();
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,
-                                    long id) {
-
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String clickedName = (String) parent.getItemAtPosition(position);
                 Intent intent = new Intent(ChatSearchActivity.this, MessageActivity.class);
                 intent.putExtra("userID", clickedName);

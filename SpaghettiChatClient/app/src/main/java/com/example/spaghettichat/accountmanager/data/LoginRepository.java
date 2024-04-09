@@ -49,6 +49,9 @@ public class LoginRepository {
         if (result instanceof Result.Success) {
             setLoggedInUser(((Result.Success<LoggedInUser>) result).getData());
         }
+        else {
+            return null;
+        }
         return result;
     }
 }

@@ -16,7 +16,10 @@ public class Chat {
     private LocalDateTime creationTimestamp;
 
     // default constructor
-    public Chat() {}
+    public Chat() {
+        this.participants = new ArrayList<Account>();
+        this.messages = new ArrayList<Message>();
+    }
 
     public Chat(int chatId, ArrayList<Account> participants, Account creator,
                 ArrayList<Message> messages, boolean isVanishMode, LocalDateTime creationTimestamp) {
@@ -57,5 +60,16 @@ public class Chat {
     public void setVanishMode(boolean vanishMode) { isVanishMode = vanishMode; }
 
     public void setCreationTimestamp(LocalDateTime creationTimestamp) { this.creationTimestamp = creationTimestamp; }
+
+    public String getRecipientString(Account user) {
+
+        String pString = "";
+
+        for (Account participant : this.participants) {
+            if (participant.getEmployeeId().equals(user.getEmployeeId())) { continue; }
+            else { pString = pString + user.getFullName() + " "; }
+        }
+        return pString;
+    }
 
 }
